@@ -240,13 +240,12 @@ function getModelYears(inventory) {
  * in the same order as they appear in the original inventory.
 */
 function getOlderCars(inventory, maxYear) {
-  const oldCars = [];
-for (var i=0; i<inventory.length; i++){
-  if (maxYear>=inventory.car_year){
-    inventory[i]=oldCars[i];
-  }
-}return oldCars;
+   const cars = inventory.filter(c => c.car_year <= maxYear);
+     return cars;
+    
 }
+
+
 
 /**
  * ### Challenge `getGermanCars`
@@ -260,23 +259,11 @@ for (var i=0; i<inventory.length; i++){
  * in the same order as they appear in the original inventory.
 */
 function getGermanCars(inventory) {
-  const germanCars = [];
-  for (var i=0; i<inventory.length; i++){
-    if (inventory.car_make =="Audi"){
-      return inventory[i];
-    }
-    else if (inventory.car_make =="Mercedes-Benz"){
-      return inventory[i];
-    }
-    else if(inventory.car_make =="Volkswagen"){
-      return inventory[i];
-    }
-    else if(inventory.car_make =="BMW"){
-      return inventory[i];
-    }
-  }
-}
 
+const makes = ["Audi", "Mercedes-Benz", "Volkswagen", "BMW"];
+    const germanCars = inventory.filter(c => makes.includes(c.car_make));
+     return germanCars;
+}
 /**
  * ### Challenge refactor to arrow functions
  * 
@@ -324,12 +311,12 @@ const argTimesTwo = (num) =>{
  *         (2) returns the updated value of the `odometer`.
 */
 function carMaker(num) {
-//   const object ={
-//     odometer:num,
-//   }drive:distance => object.odometer+=distance
-
+    let object = {
+      odometer:num,
+    drive:distance => object.odometer+=distance
 };
-// return object;
+ return object;
+}
 
 /// ////// END OF CHALLENGE /////////
 /// ////// END OF CHALLENGE /////////
