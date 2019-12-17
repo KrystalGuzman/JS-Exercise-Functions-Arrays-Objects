@@ -221,9 +221,10 @@ function sortCarInventory(inventory) {
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
 function getModelYears(inventory) {
-  const result = inventory.map(({ car_year }) => car_year)
-  return result;
+   const result = inventory.map(({ car_year }) => car_year)
+   return result;
 }
+
 
 
 
@@ -240,10 +241,14 @@ function getModelYears(inventory) {
  * in the same order as they appear in the original inventory.
 */
 function getOlderCars(inventory, maxYear) {
-   const cars = inventory.filter(c => c.car_year <= maxYear);
-     return cars;
-    
-}
+    let oldCars = [];
+    for (let i=0; i<inventory.length; i++){
+      if (maxYear >= inventory[i].car_year){
+        oldCars.push(inventory[i]);
+      }
+    }return oldCars;
+  }
+
 
 
 
@@ -260,9 +265,12 @@ function getOlderCars(inventory, maxYear) {
 */
 function getGermanCars(inventory) {
 
-const makes = ["Audi", "Mercedes-Benz", "Volkswagen", "BMW"];
-    const germanCars = inventory.filter(c => makes.includes(c.car_make));
-     return germanCars;
+let germanCars = [];
+for (let i = 0; i < inventory.length; i++){
+  if (inventory[i].car_make == "Audi" || inventory[i].car_make == "Mercedes-Benz" || inventory[i].car_make == "Volkswagen" || inventory[i].car_make == "BMW")
+  germanCars.push(inventory[i]);
+  }
+  return germanCars;
 }
 /**
  * ### Challenge refactor to arrow functions
